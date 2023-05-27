@@ -2,11 +2,11 @@
     <x-navbars.sidebar activePage="user-management"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="User Management"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="User Management" page="Kelola User"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row justify-content-center align-items-center">
-                <div class="col-6">
+                <div class="col-lg-6">
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
@@ -45,7 +45,7 @@
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Role</label>
                                             <select class="form-control border border-2 p-2" name="role">
-                                                <option value="" disabled selected>Pilih Role</option>
+                                                <option value="" disabled>Pilih Role</option>
                                                 <option value="Staff" {{ old('role', $user->role) == 'Staff' ? 'selected' : '' }}>Staff Gudang</option>
                                                 <option value="Manajer" {{ old('role', $user->role) == 'Manajer' ? 'selected' : '' }}>Manajer</option>
                                                 <option value="Pemilik" {{ old('role', $user->role) == 'Pemilik' ? 'selected' : '' }}>Pemilik</option>

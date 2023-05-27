@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LokasiBarangController;
 use App\Http\Controllers\KelompokBarangController;
 use App\Http\Controllers\UserManagementController;
             
@@ -70,6 +72,8 @@ Route::group(['middleware' => 'auth'], function () {
 	// })->name('user-management');
 	Route::resource('user-management', UserManagementController::class);
 	Route::resource('kelompok-barang', KelompokBarangController::class);
+	Route::resource('lokasi-barang', LokasiBarangController::class);
+	Route::resource('barang', BarangController::class);
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');

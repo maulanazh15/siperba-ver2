@@ -51,8 +51,8 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Data Master</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'tables' ? ' active bg-gradient-primary' : '' }} "
-                    href="{{ route('tables') }}">
+                <a class="nav-link text-white {{ $activePage == 'barang' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{ route('barang.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
@@ -66,6 +66,15 @@
                         <i class="material-icons opacity-10">category</i>
                     </div>
                     <span class="nav-link-text ms-1">Data Kelompok Barang</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'lokasi-barang' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{ route('lokasi-barang.index') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">location_on</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Data Lokasi Barang</span>
                 </a>
             </li>
             <li class="nav-item">

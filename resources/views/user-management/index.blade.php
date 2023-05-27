@@ -3,11 +3,24 @@
     <x-navbars.sidebar activePage="user-management"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="User Management"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="User Management" page="Kelola User"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row justify-content-center align-items-center">
-                <div class="col-10">
+                <div class="col-lg-10">
+                    @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show mb-5 text-white" role="alert">
+                        <span class="alert-icon align-middle">
+                          <span class="material-icons text-md">
+                          thumb_up_off_alt
+                          </span>
+                        </span>
+                        <span class="alert-text"><strong>Success!</strong> {{ session()->get('success') }}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
