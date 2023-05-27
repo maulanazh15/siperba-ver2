@@ -15,11 +15,6 @@
                                 </h6>
                             </div>
                         </div>
-                        {{-- <div class=" me-4 my-3 text-end">
-                            <a class="btn bg-gradient-dark mb-0"><i
-                                    class="material-icons text-sm">back</i>Add New
-                                User</a>
-                        </div> --}}
                         <div class="card-body px-0 pb-">
                             <div class="px-5 py-0">
                                 <form method="post" action='{{ route('user-management.update', $user->id) }}'>

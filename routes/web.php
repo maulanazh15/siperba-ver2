@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+use App\Http\Controllers\KlienController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LokasiBarangController;
 use App\Http\Controllers\KelompokBarangController;
@@ -74,6 +76,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('kelompok-barang', KelompokBarangController::class);
 	Route::resource('lokasi-barang', LokasiBarangController::class);
 	Route::resource('barang', BarangController::class);
+	Route::resource('supplier', SupplierController::class);
+	Route::resource('klien', KlienController::class);
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');
