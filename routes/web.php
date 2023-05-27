@@ -26,6 +26,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LokasiBarangController;
 use App\Http\Controllers\KelompokBarangController;
+use App\Http\Controllers\TransaksiMasukController;
 use App\Http\Controllers\UserManagementController;
             
 
@@ -78,6 +79,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('barang', BarangController::class);
 	Route::resource('supplier', SupplierController::class);
 	Route::resource('klien', KlienController::class);
+	Route::get('tambah-po-barang',[TransaksiMasukController::class, 'tambahPO'])->name('po.tambah');
+	Route::post('proses-po',[TransaksiMasukController::class, 'prosesPO'])->name('po.simpan');
+	Route::get('po-barang', [TransaksiMasukController::class, 'indexPO'])->name('po.index');
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');

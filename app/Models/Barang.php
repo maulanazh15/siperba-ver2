@@ -28,4 +28,8 @@ class Barang extends Model
     {
         return $this->belongsTo(LokasiBarang::class, 'lokasi_barang_id');
     }
+
+    public function poBarang() {
+        return $this->hasMany(PO::class);
+    }
 }

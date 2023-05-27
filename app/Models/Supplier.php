@@ -15,4 +15,8 @@ class Supplier extends Model
         'no_telepon',
         'rekening',
     ];
+
+    public function poBarang() {
+        return $this->hasMany(PO::class);
+    }
 }
