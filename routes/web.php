@@ -79,10 +79,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('barang', BarangController::class);
 	Route::resource('supplier', SupplierController::class);
 	Route::resource('klien', KlienController::class);
+	Route::get('/ambilDataPO/{kode_po}', [TransaksiMasukController::class, 'ambilDataPO']);
 	Route::get('tambah-po-barang',[TransaksiMasukController::class, 'tambahPO'])->name('po.tambah');
 	Route::post('proses-po',[TransaksiMasukController::class, 'prosesPO'])->name('po.simpan');
 	Route::get('po-barang', [TransaksiMasukController::class, 'indexPO'])->name('po.index');
-	Route::get('user-profile', function () {
+	Route::get('barang-masuk', [TransaksiMasukController::class, 'indexBarangMasuk'])->name('barang-masuk.index');
+	Route::get('tambah-barang-masuk', [TransaksiMasukController::class, 'tambahBarangMasuk'])->name('barang-masuk.tambah');
+	Route::post('proses-barang-masuk', [TransaksiMasukController::class,'prosesBarangMasuk'])->name('barang-masuk.simpan');
+
+Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');
 });

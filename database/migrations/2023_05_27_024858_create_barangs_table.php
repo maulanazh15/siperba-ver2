@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->unsignedBigInteger('kelompok_barang_id');
-            $table->decimal('harga_beli', 10, 2);
-            $table->decimal('harga_jual', 10, 2);
+            // $table->decimal('harga_beli', 10, 2)->nullable();
+            // $table->decimal('harga_jual', 10, 2)->nullable();
             $table->integer('stok')->default('0');
             $table->unsignedBigInteger('lokasi_barang_id');
             $table->text('keterangan')->nullable();

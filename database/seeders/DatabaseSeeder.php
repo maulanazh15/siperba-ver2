@@ -50,8 +50,8 @@ class BarangSeeder extends Seeder
         Barang::create([
             'nama_barang' => 'Barang 1',
             'kelompok_barang_id' => 1,
-            'harga_beli' => 1000,
-            'harga_jual' => 2000,
+            // 'harga_beli' => 1000,
+            // 'harga_jual' => 2000,
             'lokasi_barang_id' => 1,
             'keterangan' => 'Keterangan barang 1',
         ]);
@@ -59,8 +59,8 @@ class BarangSeeder extends Seeder
         Barang::create([
             'nama_barang' => 'Barang 2',
             'kelompok_barang_id' => 2,
-            'harga_beli' => 1500,
-            'harga_jual' => 2500,
+            // 'harga_beli' => 1500,
+            // 'harga_jual' => 2500,
             'lokasi_barang_id' => 2,
             'keterangan' => 'Keterangan barang 2',
         ]);

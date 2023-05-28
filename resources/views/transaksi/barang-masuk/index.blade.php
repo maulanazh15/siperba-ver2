@@ -1,8 +1,8 @@
 <x-layout bodyClass="g-sidenav-show bg-gray-200">
-    <x-navbars.sidebar activePage="po-barang"></x-navbars.sidebar>
+    <x-navbars.sidebar activePage="barang-masuk"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Data PO Barang" page="Data Master"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Data Barang Masuk" page="Transaksi Barang Masuk"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row justify-content-center align-items-center">
@@ -29,8 +29,8 @@
                             </div>
                         </div>
                         <div class="me-3 my-3 text-end">
-                            <a class="btn bg-gradient-dark mb-0" href="{{ route('po.tambah') }}"><i
-                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Tambah PO Barang</a>
+                            <a class="btn bg-gradient-dark mb-0" href="{{ route('barang-masuk.tambah') }}"><i
+                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Tambah Barang Masuk</a>
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive px-5 pb-3">
@@ -41,29 +41,41 @@
                                                 NO
                                             </th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                KODE PO
+                                                Kode Transaksi
                                             </th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                NAMA BARANG</th>
+                                                Tanggal Masuk
+                                            </th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                TANGGAL</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                NAMA SUPPLIER</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                HARGA BARANG</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                JUMLAH BARANG</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                DETAIL</th>
+                                                Kode PO
+                                            </th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Nama Barang</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Jumlah Masuk</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($poBarang as $item)
+                                        @foreach ($barangMasuk as $item)
                                             <tr>
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center">
                                                             <p class="mb-0 text-sm">{{ $loop->iteration }}</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center">
+                                                            <h6 class="mb-0 text-sm">{{ $item->kode_transaksi }}</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center">
+                                                            <h6 class="mb-0 text-sm">{{ $item->tanggal_masuk }}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -81,22 +93,13 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs text-secondary mb-0">{{ $item->tanggal }}</p>
+                                                <td>
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center">
+                                                            <h6 class="mb-0 text-sm">{{ $item->jumlah_masuk }}</h6>
+                                                        </div>
+                                                    </div>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs text-secondary mb-0">{{ $item->supplier->nama_supplier }}</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs text-secondary mb-0">{{ $item->harga_barang }}</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs text-secondary mb-0">{{ $item->jumlah_barang }}</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs text-secondary mb-0">{{ $item->detail }}</p>
-                                                </td>
-                                                
                                             </tr>
                                         @endforeach
                                     </tbody>

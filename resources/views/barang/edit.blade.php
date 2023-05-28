@@ -44,21 +44,21 @@
                                             @enderror
                                         </div>
 
-                                        <div class="mb-3 col-md-12">
+                                        {{-- <div class="mb-3 col-md-12">
                                             <label class="form-label">Harga Beli</label>
                                             <input type="number" name="harga_beli" class="form-control border border-2 p-2" value="{{ $barang->harga_beli }}">
                                             @error('harga_beli')
                                                 <p class="text-danger inputerror">{{ $message }}</p>
                                             @enderror
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="mb-3 col-md-12">
+                                        {{-- <div class="mb-3 col-md-12">
                                             <label class="form-label">Harga Jual</label>
                                             <input type="number" name="harga_jual" class="form-control border border-2 p-2" value="{{ $barang->harga_jual }}">
                                             @error('harga_jual')
                                                 <p class="text-danger inputerror">{{ $message }}</p>
                                             @enderror
-                                        </div>
+                                        </div> --}}
 
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Lokasi</label>
