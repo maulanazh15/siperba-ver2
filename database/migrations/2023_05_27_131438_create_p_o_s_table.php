@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supplier_id');
             $table->integer('harga_barang');
             $table->integer('jumlah_barang');
+            $table->enum('status',['Dipesan','Masuk']);
             $table->string('detail')->nullable();
 
             $table->foreign('barang_id')->references('id')->on('barang');

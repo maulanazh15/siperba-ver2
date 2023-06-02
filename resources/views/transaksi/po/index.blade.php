@@ -53,6 +53,8 @@
                                                 HARGA BARANG</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 JUMLAH BARANG</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    STATUS</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 DETAIL</th>
                                         </tr>
@@ -92,6 +94,13 @@
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <p class="text-xs text-secondary mb-0">{{ $item->jumlah_barang }}</p>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    @if ($item->status == 'Dipesan')
+                                                    <span class="badge bg-gradient-info">{{ $item->status }}</span>
+                                                    @else
+                                                    <span class="badge bg-gradient-success">{{ $item->status }}</span>  
+                                                    @endif  
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <p class="text-xs text-secondary mb-0">{{ $item->detail }}</p>

@@ -31,7 +31,7 @@
                                         </div>
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Kode PO</label>
-                                            <select class="form-control border border-2 p-2" name="kode_po"
+                                            <select class="form-control border border-2 p-2 pilihpo" name="kode_po"
                                                 onchange="fillData(this.value)">
                                                 <option value="" disabled selected>Pilih Kode PO</option>
                                                 @foreach ($po as $item)
@@ -108,7 +108,7 @@
             if (port) {
                 baseUrl += ":" + port;
             }
-            fetch(baseUrl+'/ambilDataPO/'+poId)
+            fetch(baseUrl + '/ambilDataPO/' + poId)
                 .then(response => response.json())
                 .then(data => {
                     // Fill the form fields with the retrieved data
@@ -133,4 +133,7 @@
             document.getElementById('total_stok').value = total_stok;
         }
     }
+    $(document).ready(function() {
+        $('.pilihpo').select2();
+    });
 </script>

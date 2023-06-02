@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+use App\Http\Controllers\POController;
 use App\Http\Controllers\KlienController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ProfileController;
@@ -24,9 +25,10 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\LokasiBarangController;
 use App\Http\Controllers\KelompokBarangController;
-use App\Http\Controllers\TransaksiMasukController;
+// use App\Http\Controllers\TransaksiMasukController;
 use App\Http\Controllers\UserManagementController;
             
 
@@ -79,13 +81,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('barang', BarangController::class);
 	Route::resource('supplier', SupplierController::class);
 	Route::resource('klien', KlienController::class);
-	Route::get('/ambilDataPO/{kode_po}', [TransaksiMasukController::class, 'ambilDataPO']);
-	Route::get('tambah-po-barang',[TransaksiMasukController::class, 'tambahPO'])->name('po.tambah');
-	Route::post('proses-po',[TransaksiMasukController::class, 'prosesPO'])->name('po.simpan');
-	Route::get('po-barang', [TransaksiMasukController::class, 'indexPO'])->name('po.index');
-	Route::get('barang-masuk', [TransaksiMasukController::class, 'indexBarangMasuk'])->name('barang-masuk.index');
-	Route::get('tambah-barang-masuk', [TransaksiMasukController::class, 'tambahBarangMasuk'])->name('barang-masuk.tambah');
-	Route::post('proses-barang-masuk', [TransaksiMasukController::class,'prosesBarangMasuk'])->name('barang-masuk.simpan');
+	Route::get('/ambilDataPO/{kode_po}', [POController::class, 'ambilDataPO']);
+	Route::get('tambah-po-barang',[POController::class, 'tambahPO'])->name('po.tambah');
+	Route::post('proses-po',[POController::class, 'prosesPO'])->name('po.simpan');
+	Route::get('po-barang', [POController::class, 'indexPO'])->name('po.index');
+	Route::get('barang-masuk', [BarangMasukController::class, 'indexBarangMasuk'])->name('barang-masuk.index');
+	Route::get('tambah-barang-masuk', [BarangMasukController::class, 'tambahBarangMasuk'])->name('barang-masuk.tambah');
+	Route::post('proses-barang-masuk', [BarangMasukController::class,'prosesBarangMasuk'])->name('barang-masuk.simpan');
 
 Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');

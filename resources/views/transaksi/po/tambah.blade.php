@@ -22,7 +22,7 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Nama Barang</label>
-                                            <select class="form-control border border-2 p-2" name="barang_id">
+                                            <select class="form-control border border-2 p-2 pilihbarang" name="barang_id">
                                                 <option value="" disabled selected>Pilih Nama Barang</option>
                                                 @foreach ($barang as $item)
                                                     <option value="{{ $item->id }}" {{ old('barang_id') == $item->id ? 'selected' : '' }}>
@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Nama Supplier</label>
-                                            <select class="form-control border border-2 p-2" name="supplier_id">
+                                            <select class="form-control border border-2 p-2 pilihsupplier" name="supplier_id">
                                                 <option value="" disabled selected>Pilih Nama Supplier</option>
                                                 @foreach ($supplier as $item)
                                                     <option value="{{ $item->id }}" {{ old('supplier_id') == $item->id ? 'selected' : '' }}>
@@ -71,7 +71,7 @@
                                                 <p class="text-danger inputerror">{{ $message }}</p>
                                             @enderror
                                         </div>
-
+                                        
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Detail</label>
                                             <textarea class="form-control border border-2 p-2" name="detail">{{ old('detail') }}</textarea>
@@ -96,4 +96,12 @@
         </div>
     </main>
     <x-plugins></x-plugins>
+    <script>
+        $(document).ready(function() {
+            $('.pilihbarang').select2();
+        });
+        $(document).ready(function() {
+            $('.pilihsupplier').select2();
+        });
+    </script>
 </x-layout>
