@@ -31,8 +31,8 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang' => 'required',
             'kelompok_barang' => 'required',
-            'harga_beli' => 'required',
-            'harga_jual' => 'required',
+            // 'harga_beli' => 'required',
+            // 'harga_jual' => 'required',
             'lokasi_barang' => 'required',
             'keterangan' => 'required',
         ]);
@@ -40,8 +40,8 @@ class BarangController extends Controller
         Barang::create([
             'nama_barang' => $request->nama_barang,
             'kelompok_barang_id' => $request->kelompok_barang,
-            'harga_beli' => $request->harga_beli,
-            'harga_jual' => $request->harga_jual,
+            // 'harga_beli' => $request->harga_beli,
+            // 'harga_jual' => $request->harga_jual,
             'lokasi_barang_id' => $request->lokasi_barang,
             'keterangan' => $request->keterangan,
         ]);
@@ -61,8 +61,8 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang' => 'required',
             'kelompok_barang' => 'required',
-            'harga_beli' => 'required',
-            'harga_jual' => 'required',
+            // 'harga_beli' => 'required',
+            // 'harga_jual' => 'required',
             'lokasi_barang' => 'required',
             'keterangan' => 'required',
         ]);
@@ -70,8 +70,8 @@ class BarangController extends Controller
         $barang->update([
             'nama_barang' => $request->nama_barang,
             'kelompok_barang' => $request->kelompok_barang,
-            'harga_beli' => $request->harga_beli,
-            'harga_jual' => $request->harga_jual,
+            // 'harga_beli' => $request->harga_beli,
+            // 'harga_jual' => $request->harga_jual,
             'lokasi_barang' => $request->lokasi_barang,
             'keterangan' => $request->keterangan,
         ]);
