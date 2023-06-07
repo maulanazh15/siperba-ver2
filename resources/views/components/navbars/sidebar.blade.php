@@ -120,8 +120,8 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Transaksi Barang Keluar</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == '' ? ' active bg-gradient-primary' : '' }} "
-                    href="{{ route('po.index') }}">
+                <a class="nav-link text-white {{ $activePage == 'project' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{ route('project.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">post_add</i>
                     </div>
