@@ -17,15 +17,25 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+use App\Http\Controllers\POController;
+use App\Http\Controllers\KlienController;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\LokasiBarangController;
 use App\Http\Controllers\KelompokBarangController;
+use App\Http\Controllers\ProjectController;
+// use App\Http\Controllers\TransaksiMasukController;
 use App\Http\Controllers\UserManagementController;
-            
 
-Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
+
+Route::get('/', function () {
+	return redirect('sign-in');
+})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
@@ -35,7 +45,7 @@ Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
 Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
 Route::get('verify', function () {
 	return view('sessions.password.verify');
-})->middleware('guest')->name('verify'); 
+})->middleware('guest')->name('verify');
 Route::get('/reset-password/{token}', function ($token) {
 	return view('sessions.password.reset', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
@@ -70,6 +80,19 @@ Route::group(['middleware' => 'auth'], function () {
 	// })->name('user-management');
 	Route::resource('user-management', UserManagementController::class);
 	Route::resource('kelompok-barang', KelompokBarangController::class);
+	Route::resource('lokasi-barang', LokasiBarangController::class);
+	Route::resource('barang', BarangController::class);
+	Route::resource('supplier', SupplierController::class);
+	Route::resource('klien', KlienController::class);
+	Route::get('/ambilDataPO/{kode_po}', [POController::class, 'ambilDataPO']);
+	Route::get('tambah-po-barang', [POController::class, 'tambahPO'])->name('po.tambah');
+	Route::post('proses-po', [POController::class, 'prosesPO'])->name('po.simpan');
+	Route::get('po-barang', [POController::class, 'indexPO'])->name('po.index');
+	Route::get('barang-masuk', [BarangMasukController::class, 'indexBarangMasuk'])->name('barang-masuk.index');
+	Route::get('tambah-barang-masuk', [BarangMasukController::class, 'tambahBarangMasuk'])->name('barang-masuk.tambah');
+	Route::post('proses-barang-masuk', [BarangMasukController::class, 'prosesBarangMasuk'])->name('barang-masuk.simpan');
+	Route::resource('project', ProjectController::class);
+
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');

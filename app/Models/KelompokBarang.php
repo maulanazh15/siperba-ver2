@@ -16,8 +16,8 @@ class KelompokBarang extends Model
     ];
 
     // Relationship with Barang
-    // public function barang()
-    // {
-    //     return $this->hasMany(Barang::class);
-    // }
+    public function barang()
+    {
+        return $this->hasMany(Barang::class);
+    }
 }
