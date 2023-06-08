@@ -108,7 +108,7 @@ class ProjectSeeder extends Seeder
                 'klien_id' => $faker->numberBetween(1, 100),
                 'harga_jual' => $faker->numberBetween(1000, 5000),
                 'jumlah_pesanan' => $faker->numberBetween(1, 50),
-                'status' => $faker->randomElement(['Pending','Proses', 'Selesai']),
+                'status' => $faker->randomElement(['Pending','Dalam Proses', 'Selesai']),
                 'detail' => $faker->sentence,
             ]);
         }

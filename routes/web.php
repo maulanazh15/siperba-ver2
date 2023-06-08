@@ -21,15 +21,16 @@ use App\Http\Controllers\POController;
 use App\Http\Controllers\KlienController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\LokasiBarangController;
-use App\Http\Controllers\KelompokBarangController;
-use App\Http\Controllers\ProjectController;
 // use App\Http\Controllers\TransaksiMasukController;
+use App\Http\Controllers\KelompokBarangController;
 use App\Http\Controllers\UserManagementController;
 
 
@@ -89,9 +90,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('proses-po', [POController::class, 'prosesPO'])->name('po.simpan');
 	Route::get('po-barang', [POController::class, 'indexPO'])->name('po.index');
 	Route::get('barang-masuk', [BarangMasukController::class, 'indexBarangMasuk'])->name('barang-masuk.index');
-	Route::get('tambah-barang-masuk', [BarangMasukController::class, 'tambahBarangMasuk'])->name('barang-masuk.tambah');
-	Route::post('proses-barang-masuk', [BarangMasukController::class, 'prosesBarangMasuk'])->name('barang-masuk.simpan');
+	Route::get('barang-masuk/tambah', [BarangMasukController::class, 'tambahBarangMasuk'])->name('barang-masuk.tambah');
+	Route::post('barang-masuk/proses', [BarangMasukController::class, 'prosesBarangMasuk'])->name('barang-masuk.simpan');
 	Route::resource('project', ProjectController::class);
+	Route::get('barang-keluar', [BarangKeluarController::class, 'index'])->name('barang-keluar.index');
+	Route::get('barang-keluar/tambah', [BarangKeluarController::class, 'create'])->name('barang-keluar.tambah');
+	Route::post('barang-keluar/proses', [BarangKeluarController::class, 'store'])->name('barang-keluar.simpan');
+	Route::get('/ambilDataProject/{project_id}', [ProjectController::class, 'ambilDataProject']);
 
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');

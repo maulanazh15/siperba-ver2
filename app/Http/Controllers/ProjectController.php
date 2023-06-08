@@ -145,4 +145,18 @@ class ProjectController extends Controller
         // Contoh pengalihan ke halaman index proyek setelah dihapus
         return redirect()->route('project.index')->with('success', 'Proyek berhasil dihapus');
     }
+
+        public function ambilDataProject($project_id) {
+            $project = Project::where('id', $project_id)->first();
+
+            $data = [
+                'barang_id'=> $project->barang_id,
+                'nama_barang' => $project->barang->nama_barang,
+                'stok_barang' => $project->barang->stok,
+                'jumlah_keluar' => $project->jumlah_pesanan,
+            ];
+            // dd($data);
+            return response()->json($data);
+        }
+
 }
