@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 Use Str;
-Use Hash;
-use Illuminate\Auth\Events\PasswordReset;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Validation\ValidationException;
 
 class SessionsController extends Controller
 {
@@ -24,7 +23,6 @@ class SessionsController extends Controller
             'email' => 'required',
             'password' => 'required'
         ]);
-
         if (!Auth::attempt($attributes)) {
             throw ValidationException::withMessages([
                 'email' => 'Your provided credentials could not be verified.'

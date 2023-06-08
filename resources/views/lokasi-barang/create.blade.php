@@ -21,7 +21,7 @@
                                     @csrf
                                     <div class="row">
                                         <div class="mb-3 col-md-12">
-                                            <label class="form-label">Nama Lokasi</label>
+                                            <label class="form-label">Nama Lokasi 2</label>
                                             <input type="text" name="nama_lokasi" class="form-control border border-2 p-2" value="{{ old('nama_lokasi') }}">
                                             @error('nama_lokasi')
                                                 <p class="text-danger inputerror">{{ $message }}</p>
