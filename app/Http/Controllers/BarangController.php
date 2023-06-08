@@ -12,8 +12,18 @@ class BarangController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        // Apply middleware to the controller actions
+        $this->middleware('permission:view barang')->only('index');
+        $this->middleware('permission:create barang')->only('create', 'store');
+        $this->middleware('permission:edit barang')->only('edit', 'update');
+        $this->middleware('permission:delete barang')->only('destroy');
+    }
     public function index()
     {
+        $this->authorize('view barang');
+
         $barang = Barang::all();
         
         return view('barang.index', compact('barang'));
@@ -21,6 +31,7 @@ class BarangController extends Controller
 
     public function create()
     {
+        $this->authorize('create barang');
         $kelompokBarang = KelompokBarang::all();
         $lokasiBarang = LokasiBarang::all();
         return view('barang.create', compact('kelompokBarang', 'lokasiBarang'));
@@ -28,6 +39,7 @@ class BarangController extends Controller
 
     public function store(Request $request)
     {
+        $this->authorize('create barang');
         $request->validate([
             'nama_barang' => 'required',
             'kelompok_barang' => 'required',
@@ -51,6 +63,7 @@ class BarangController extends Controller
 
     public function edit(Barang $barang)
     {
+        $this->authorize('edit barang');
         $kelompokBarang = KelompokBarang::all();
         $lokasiBarang = LokasiBarang::all();
         return view('barang.edit', compact('barang', 'kelompokBarang', 'lokasiBarang'));
@@ -58,6 +71,7 @@ class BarangController extends Controller
 
     public function update(Request $request, Barang $barang)
     {
+        $this->authorize('edit barang');
         $request->validate([
             'nama_barang' => 'required',
             'kelompok_barang' => 'required',
@@ -81,6 +95,7 @@ class BarangController extends Controller
 
     public function destroy(Barang $barang)
     {
+        $this->authorize('delete barang');
         $barang->delete();
         return redirect()->route('barang.index')->with('success', 'Barang berhasil dihapus.');
     }

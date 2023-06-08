@@ -10,8 +10,12 @@ use App\Models\Supplier;
 use App\Models\LokasiBarang;
 use App\Models\KelompokBarang;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\PermissionRegistrar;
+
 use Faker\Factory as FakerFactory;
 
 class KelompokBarangSeeder extends Seeder
@@ -116,6 +120,7 @@ class ProjectSeeder extends Seeder
     }
 }
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -125,11 +130,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@material.com',
-            'password' => ('secret')
-        ]);
+        
+        // User::factory()->create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@material.com',
+        //     'password' => ('secret')
+        // ]);
+        $this->call(RoleSeeders::class);
+
+        $this->call(UserSeeders::class);
 
         // Menjalankan seeder untuk kelompok_barang
         $this->call(KelompokBarangSeeder::class);

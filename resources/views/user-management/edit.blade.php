@@ -39,13 +39,13 @@
                                     
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Role</label>
-                                            <select class="form-control border border-2 p-2" name="role">
+                                            <select class="form-control border border-2 p-2" name="akses">
                                                 <option value="" disabled>Pilih Role</option>
-                                                <option value="Staff" {{ old('role', $user->role) == 'Staff' ? 'selected' : '' }}>Staff Gudang</option>
-                                                <option value="Manajer" {{ old('role', $user->role) == 'Manajer' ? 'selected' : '' }}>Manajer</option>
-                                                <option value="Pemilik" {{ old('role', $user->role) == 'Pemilik' ? 'selected' : '' }}>Pemilik</option>
+                                                <option value="Staff" {{ old('akses', $user->akses) == 'Staff' ? 'selected' : '' }}>Staff Gudang</option>
+                                                <option value="Manajer" {{ old('akses', $user->akses) == 'Manajer' ? 'selected' : '' }}>Manajer</option>
+                                                <option value="Pemilik" {{ old('akses', $user->akses) == 'Pemilik' ? 'selected' : '' }}>Pemilik</option>
                                             </select>
-                                            @error('role')
+                                            @error('akses')
                                                 <p class='text-danger inputerror'>{{ $message }}</p>
                                             @enderror
                                         </div>

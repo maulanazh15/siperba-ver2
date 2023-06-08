@@ -9,7 +9,16 @@ use Illuminate\Http\Request;
 
 class BarangKeluarController extends Controller
 {
+    public function __construct()
+    {
+        // Apply middleware to the controller actions
+        $this->middleware('permission:view barang-keluar')->only('index');
+        $this->middleware('permission:create barang-keluar')->only('create', 'store');
+    }
+
     public function index() {
+        // Only allow access if user has permission
+        $this->authorize('view barang-keluar');
         $barangKeluar = BarangKeluar::all();
 
         return view('transaksi.barang-keluar.index', compact('barangKeluar'));
@@ -17,6 +26,8 @@ class BarangKeluarController extends Controller
 
     public function create()
     {
+        // Only allow access if user has permission
+        $this->authorize('create barang-keluar');
         // Menampilkan halaman form tambah barang keluar
         $projects = Project::where('status','Pending')->get(); // Mengambil semua data project
 
@@ -25,6 +36,8 @@ class BarangKeluarController extends Controller
 
     public function store(Request $request)
     {
+        // Only allow access if user has permission
+        $this->authorize('create barang-keluar');
         // Validasi inputan
         $request->validate([
             'tanggal_keluar' => 'required|date',

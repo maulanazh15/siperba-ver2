@@ -4,39 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LokasiBarang;
+use Spatie\Permission\Models\Permission;
 
 class LokasiBarangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function __construct()
     {
-        $lokasiBarangs = LokasiBarang::all();
-        return view('lokasi-barang.index', compact('lokasiBarangs'));        
+        // Apply middleware to the controller actions
+        $this->middleware('permission:view lokasi-barang')->only('index');
+        $this->middleware('permission:create lokasi-barang')->only('create', 'store');
+        $this->middleware('permission:edit lokasi-barang')->only('edit', 'update');
+        $this->middleware('permission:delete lokasi-barang')->only('destroy');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function index()
+    {
+        // Only allow access if user has permission
+        $this->authorize('view lokasi-barang');
+
+        $lokasiBarangs = LokasiBarang::all();
+        return view('lokasi-barang.index', compact('lokasiBarangs'));
+    }
+
     public function create()
     {
+        // Only allow access if user has permission
+        $this->authorize('create lokasi-barang');
+
         return view('lokasi-barang.create');
     }
 
-   /**
-     * Display the specified resource edit form.
-     */
     public function edit(LokasiBarang $lokasiBarang)
     {
+        // Only allow access if user has permission
+        $this->authorize('edit lokasi-barang');
+
         return view('lokasi-barang.edit', compact('lokasiBarang'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        // Only allow access if user has permission
+        $this->authorize('create lokasi-barang');
+
         $validatedData = $request->validate([
             'nama_lokasi' => 'required',
         ]);
@@ -47,11 +57,11 @@ class LokasiBarangController extends Controller
             ->with('success', 'Lokasi barang berhasil ditambahkan.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, LokasiBarang $lokasiBarang)
     {
+        // Only allow access if user has permission
+        $this->authorize('edit lokasi-barang');
+
         $validatedData = $request->validate([
             'nama_lokasi' => 'required',
         ]);
@@ -62,11 +72,11 @@ class LokasiBarangController extends Controller
             ->with('success', 'Lokasi barang berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(LokasiBarang $lokasiBarang)
     {
+        // Only allow access if user has permission
+        $this->authorize('delete lokasi-barang');
+
         $lokasiBarang->delete();
 
         return redirect()->route('lokasi-barang.index')
