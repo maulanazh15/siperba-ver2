@@ -27,8 +27,8 @@
         <tbody>
             @foreach ($laporanbarangMasuk as $barang)
                 <tr>
-                    <td>{{ $barang->nama_barang }}</td>
-                    <td>{{ $barang->jumlah }}</td>
+                    <td>{{ $barang->barang->nama_barang }}</td>
+                    <td>{{ $barang->jumlah_masuk }}</td>
                     <td>{{ $barang->tanggal_masuk }}</td>
                 </tr>
             @endforeach
