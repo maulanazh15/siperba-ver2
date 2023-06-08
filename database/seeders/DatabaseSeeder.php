@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
          User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@material.com',
-            'password' => Hash::make('secret')
+            'password' => ('secret')
         ]);
 
         // Menjalankan seeder untuk kelompok_barang
