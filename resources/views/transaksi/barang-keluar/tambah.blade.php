@@ -49,7 +49,7 @@
                                             <input type="text" name="nama_barang" id="nama_barang"
                                                 class="form-control border border-2 p-2"
                                                 value="{{ old('nama_barang') }}" readonly>
-                                            <input type="hidden" name="barang_id" id="barang_id">
+                                            <input type="hidden" name="barang_id" id="barang_id" value="{{ old('barang_id') }}">
                                         </div>
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Stok Barang</label>
