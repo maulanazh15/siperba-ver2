@@ -98,7 +98,7 @@ class ProjectController extends Controller
             'nama_project' => 'required',
             'tanggal_pesan' => 'required',
             'barang_id' => 'required',
-            'nama_klien' => 'required',
+            'klien_id' => 'required',
             'harga_jual' => 'required',
             'jumlah_pesanan' => 'required',
             'status' => 'required',

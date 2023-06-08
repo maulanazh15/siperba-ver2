@@ -54,6 +54,7 @@ class BarangSeeder extends Seeder
                 'kelompok_barang_id' => $faker->numberBetween(1, 100),
                 'lokasi_barang_id' => $faker->numberBetween(1, 100),
                 'keterangan' => $faker->sentence,
+                'stok'=> $faker->numberBetween(1000,10000)
             ]);
         }
     }

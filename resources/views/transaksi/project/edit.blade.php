@@ -41,7 +41,7 @@
                                         <select class="form-control border border-2 p-2 pilihBarang" name="barang_id">
                                             <option value="" disabled selected>Pilih Barang</option>
                                             @foreach ($barangList as $barang)
-                                                <option value="{{ $barang->id }}" {{ $project->barang_id == $barang->id ? 'selected' : '' }}>
+                                                <option value="{{ $barang->id }}" {{ (old('barang_id', $project->barang_id) == $barang->id) ? 'selected' : '' }}>
                                                     {{ $barang->nama_barang }}
                                                 </option>
                                             @endforeach
@@ -55,8 +55,7 @@
                                         <select class="form-control border border-2 p-2 pilihKlien" name="klien_id">
                                             <option value="" disabled selected>Pilih Klien</option>
                                             @foreach ($klienList as $klien)
-                                                <option value="{{ $klien->id }}"
-                                                    {{ $project->klien_id == $klien->id ? 'selected' : '' }}>
+                                                <option value="{{ $klien->id }}" {{ (old('klien_id', $project->klien_id) == $klien->id) ? 'selected' : '' }}>
                                                     {{ $klien->nama_klien }}
                                                 </option>
                                             @endforeach
@@ -64,7 +63,7 @@
                                         @error('klien_id')
                                             <p class="text-danger inputerror">{{ $message }}</p>
                                         @enderror
-                                    </div>
+                                    </div>     
                                     <div class="mb-3">
                                         <label class="form-label">Harga Jual Barang</label>
                                         <input type="number" name="harga_jual"
