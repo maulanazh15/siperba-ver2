@@ -31,6 +31,7 @@ use App\Http\Controllers\KelompokBarangController;
 use App\Http\Controllers\ProjectController;
 // use App\Http\Controllers\TransaksiMasukController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\LaporanBarangMasukController;
 
 
 Route::get('/', function () {
@@ -92,6 +93,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('tambah-barang-masuk', [BarangMasukController::class, 'tambahBarangMasuk'])->name('barang-masuk.tambah');
 	Route::post('proses-barang-masuk', [BarangMasukController::class, 'prosesBarangMasuk'])->name('barang-masuk.simpan');
 	Route::resource('project', ProjectController::class);
+	Route::get('/laporan-barang-masuk', [LaporanBarangMasukController::class, 'index'])->name('laporan-barang-masuk.index');
+	Route::get('/laporan-barang-masuk/export-pdf', [LaporanBarangMasukController::class, 'exportPDF'])->name('laporan-barang-masuk.export');
 
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
