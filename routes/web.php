@@ -33,6 +33,7 @@ use App\Http\Controllers\LokasiBarangController;
 use App\Http\Controllers\KelompokBarangController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\LaporanBarangMasukController;
+use App\Http\Controllers\LaporanBarangKeluarController;
 
 
 Route::get('/', function () {
@@ -100,6 +101,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('barang-keluar/tambah', [BarangKeluarController::class, 'create'])->name('barang-keluar.tambah');
 	Route::post('barang-keluar/proses', [BarangKeluarController::class, 'store'])->name('barang-keluar.simpan');
 	Route::get('/ambilDataProject/{project_id}', [ProjectController::class, 'ambilDataProject']);
+	Route::get('/laporan-barang-keluar', [LaporanBarangKeluarController::class, 'index'])->name('laporan-barang-keluar.index');
+	Route::get('/laporan-barang-keluar/export-pdf', [LaporanBarangKeluarController::class, 'exportPDF'])->name('laporan-barang-keluar.export');
 
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
