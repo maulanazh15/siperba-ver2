@@ -53,8 +53,8 @@
                                                 JUMLAH PESANAN</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 STATUS</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                DETAIL</th>
+                                            {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                DETAIL</th> --}}
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
                                     </thead>
@@ -90,9 +90,9 @@
                                                 <td class="align-middle text-center text-sm">
                                                     <p class="text-xs text-secondary mb-0">{{ $project->status }}</p>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
+                                                {{-- <td class="align-middle text-center text-sm">
                                                     <p class="text-xs text-secondary mb-0">{{ $project->detail }}</p>
-                                                </td>
+                                                </td> --}}
                                                 <td class="align-middle">
                                                     <a rel="tooltip" class="badge bg-gradient-success"
                                                         href="{{ route('project.edit', $project->id) }}">
