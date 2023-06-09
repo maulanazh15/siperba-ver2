@@ -99,4 +99,6 @@ class BarangController extends Controller
         $barang->delete();
         return redirect()->route('barang.index')->with('success', 'Barang berhasil dihapus.');
     }
+
+
 }

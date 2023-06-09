@@ -94,7 +94,7 @@
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $user->role }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $user->akses }}</span>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span
@@ -143,7 +143,7 @@
             <x-footers.auth></x-footers.auth>
         </div>
     </main>
-    <x-plugins></x-plugins>
+    {{-- <x-plugins></x-plugins> --}}
     <script>
         $(document).ready(function() {
             $('#tabelUser').DataTable();

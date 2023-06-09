@@ -127,5 +127,5 @@
             $('.pilihBarang').select2();
         });
     </script>
-    <x-plugins></x-plugins>
+    {{-- <x-plugins></x-plugins> --}}
 </x-layout>

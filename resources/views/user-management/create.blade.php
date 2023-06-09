@@ -27,27 +27,29 @@
                                     <div class="row">
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Email Address</label>
-                                            <input type="email" name="email" class="form-control border border-2 p-2" value="{{ old('email') }}">
+                                            <input type="email" name="email"
+                                                class="form-control border border-2 p-2" value="{{ old('email') }}">
                                             @error('email')
                                                 <p class='text-danger inputerror'>{{ $message }}</p>
                                             @enderror
                                         </div>
-                                    
+
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Nama</label>
-                                            <input type="text" name="name" class="form-control border border-2 p-2" value="{{ old('name') }}">
+                                            <input type="text" name="name"
+                                                class="form-control border border-2 p-2" value="{{ old('name') }}">
                                             @error('name')
                                                 <p class='text-danger inputerror'>{{ $message }}</p>
                                             @enderror
                                         </div>
-                                    
+
                                         <div class="mb-3 col-md-12">
                                             <label class="form-label">Role</label>
                                             <select class="form-control border border-2 p-2" name="akses">
-                                                <option value="" disabled selected>Pilih Role</option>
-                                                <option value="Staff" {{ old('akses') == 'Staff' ? 'selected' : '' }}>Staff Gudang</option>
-                                                <option value="Manajer" {{ old('akses') == 'Manajer' ? 'selected' : '' }}>Manajer</option>
-                                                <option value="Pemilik" {{ old('akses') == 'Pemilik' ? 'selected' : '' }}>Pemilik</option>
+                                                <option value="" disabled>Pilih Role</option>
+                                                <option value="staff" {{ old('akses') == 'staff' ? 'selected' : '' }}>Staff Gudang</option>
+                                                <option value="manajer" {{ old('akses') == 'manajer' ? 'selected' : '' }}>Manajer</option>
+                                                <option value="pemilik" {{ old('akses') == 'pemilik' ? 'selected' : '' }}>Pemilik</option>
                                             </select>
                                             @error('akses')
                                                 <p class='text-danger inputerror'>{{ $message }}</p>
@@ -67,16 +69,18 @@
                                             <label class="form-label">Konfirmasi Password</label>
                                             <input type="password" name="password_confirmation"
                                                 class="form-control border border-2 p-2">
+                                            @error('password_confirmation')
+                                                <p class='text-danger inputerror'>{{ $message }}</p>
+                                            @enderror
                                         </div>
-                                        @error('password_confirmation')
-                                            <p class='text-danger inputerror'>{{ $message }}</p>
-                                        @enderror
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <button type="submit" class="btn bg-gradient-dark">Submit</button>
-    
-                                            <a href="{{ route('user-management.index') }}" class="btn bg-gradient-info">Kembali</a>
+
+                                            <a href="{{ route('user-management.index') }}"
+                                                class="btn bg-gradient-info">Kembali</a>
                                         </div>
                                     </div>
                                 </form>
@@ -89,7 +93,7 @@
             <x-footers.auth></x-footers.auth>
         </div>
     </main>
-    <x-plugins></x-plugins>
+    {{-- <x-plugins></x-plugins> --}}
     <script>
         // In your Javascript (external .js resource or <script> tag)
         $(document).ready(function() {

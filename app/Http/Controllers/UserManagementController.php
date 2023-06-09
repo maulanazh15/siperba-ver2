@@ -43,11 +43,15 @@ class UserManagementController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string',
-            'password' => 'required|string|min:8|confirmed',
-            'akses' => 'required|in:Pemilik,Manajer,Staff'
+            'password' => 'required|string|min:6|confirmed',
+            'akses' => 'required'
         ]);
 
-        $user = User::create($validatedData);
+
+        $user = new User();
+        $user->email = $validatedData['email'];
+        $user->name = $validatedData['name'];
+        $user->akses = $validatedData['akses'];
         if ($request->akses == 'pemilik') {
             $user->assignRole('pemilik');
         } elseif ($request->akses == 'manajer') {
@@ -55,6 +59,10 @@ class UserManagementController extends Controller
         } else {
             $user->assignRole('staff');
         }
+        if ($request->filled('password')) {
+            $user->password = bcrypt($validatedData['password']);
+        }
+        $user->save();
 
         return redirect()->route('user-management.index')->with('success', 'User created successfully.');
     }

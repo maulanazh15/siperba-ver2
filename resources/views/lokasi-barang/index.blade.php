@@ -93,7 +93,7 @@
             <x-footers.auth></x-footers.auth>
         </div>
     </main>
-    <x-plugins></x-plugins>
+    {{-- <x-plugins></x-plugins> --}}
     <script>
         $(document).ready(function() {
             $('#tabelLokasiBarang').DataTable();

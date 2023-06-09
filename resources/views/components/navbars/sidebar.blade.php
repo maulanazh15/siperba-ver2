@@ -152,18 +152,27 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == '' ? ' active bg-gradient-primary' : '' }} "
-                    href="{{ route('laporan-barang-masuk.index') }}">
+                    href="{{ route('laporan-stok-barang.export') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">post_add</i>
+                        <i class="material-icons opacity-10">print</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Laporan Stok Barang</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == '' ? ' active bg-gradient-primary' : '' }} "
+                    href="{{ route('laporan-barang-masuk.export') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">print</i>
                     </div>
                     <span class="nav-link-text ms-1">Laporan Barang Masuk</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == '' ? ' active bg-gradient-primary' : '' }} "
-                    href="{{ route('laporan-barang-keluar.index') }}">
+                    href="{{ route('laporan-barang-keluar.export') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">post_add</i>
+                        <i class="material-icons opacity-10">print</i>
                     </div>
                     <span class="nav-link-text ms-1">Laporan Barang Keluar</span>
                 </a>

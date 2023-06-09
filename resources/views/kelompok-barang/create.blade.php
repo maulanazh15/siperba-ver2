@@ -44,7 +44,7 @@
             <x-footers.auth></x-footers.auth>
         </div>
     </main>
-    <x-plugins></x-plugins>
+    {{-- <x-plugins></x-plugins> --}}
     <script>
         // In your Javascript (external .js resource or <script> tag)
         $(document).ready(function() {

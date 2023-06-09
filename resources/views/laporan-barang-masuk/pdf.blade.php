@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $barang->barang->nama_barang }}</td>
                         <td>{{ $barang->jumlah_masuk }}</td>
-                        <td>{{ $barang->tanggal_masuk }}</td>
+                        <td>{{ $barang->created_at }}</td>
                     </tr>
                 @endforeach
             </tbody>
