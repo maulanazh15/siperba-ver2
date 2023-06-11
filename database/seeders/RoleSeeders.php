@@ -44,6 +44,9 @@ class RoleSeeders extends Seeder
         Permission::create(['name' => 'view laporan-barang-masuk']);
         Permission::create(['name' => 'export laporan-barang-masuk']);
 
+        Permission::create(['name' => 'view laporan-stok-barang']);
+        Permission::create(['name' => 'export laporan-stok-barang']);
+
         Permission::create(['name' => 'view lokasi-barang']);
         Permission::create(['name' => 'create lokasi-barang']);
         Permission::create(['name' => 'edit lokasi-barang']);
@@ -79,6 +82,8 @@ class RoleSeeders extends Seeder
             'export laporan-barang-keluar',
             'view laporan-barang-masuk',
             'export laporan-barang-masuk',
+            'view laporan-stok-barang',
+            'export laporan-stok-barang',
             'view user management',
             'create user management',
             'edit user management',

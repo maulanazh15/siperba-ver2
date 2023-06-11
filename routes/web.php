@@ -29,9 +29,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\LokasiBarangController;
-// use App\Http\Controllers\TransaksiMasukController;
 use App\Http\Controllers\KelompokBarangController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\LaporanStokBarangController;
 use App\Http\Controllers\LaporanBarangMasukController;
 use App\Http\Controllers\LaporanBarangKeluarController;
 
@@ -88,6 +88,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/laporan-barang-masuk/export-pdf', [LaporanBarangMasukController::class, 'exportPDF'])->name('laporan-barang-masuk.export');
 		Route::get('/laporan-barang-keluar', [LaporanBarangKeluarController::class, 'index'])->name('laporan-barang-keluar.index');
 		Route::get('/laporan-barang-keluar/export-pdf', [LaporanBarangKeluarController::class, 'exportPDF'])->name('laporan-barang-keluar.export');
+		Route::get('/laporan-stok-barang', [LaporanStokBarangController::class, 'index'])->name('laporan-stok-barang.index');
+		Route::get('/laporan-stok-barang/export-pdf', [LaporanStokBarangController::class, 'exportPDF'])->name('laporan-stok-barang.export');
 	});
 	
 	Route::group(['middleware' => ['role:manajer']], function () {

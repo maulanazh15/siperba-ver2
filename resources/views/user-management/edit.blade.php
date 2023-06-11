@@ -41,9 +41,9 @@
                                             <label class="form-label">Role</label>
                                             <select class="form-control border border-2 p-2" name="akses">
                                                 <option value="" disabled>Pilih Role</option>
-                                                <option value="Staff" {{ old('akses', $user->akses) == 'Staff' ? 'selected' : '' }}>Staff Gudang</option>
-                                                <option value="Manajer" {{ old('akses', $user->akses) == 'Manajer' ? 'selected' : '' }}>Manajer</option>
-                                                <option value="Pemilik" {{ old('akses', $user->akses) == 'Pemilik' ? 'selected' : '' }}>Pemilik</option>
+                                                <option value="staff" {{ old('akses', $user->akses) == 'staff' ? 'selected' : '' }}>Staff Gudang</option>
+                                                <option value="manajer" {{ old('akses', $user->akses) == 'manajer' ? 'selected' : '' }}>Manajer</option>
+                                                <option value="pemilik" {{ old('akses', $user->akses) == 'pemilik' ? 'selected' : '' }}>Pemilik</option>
                                             </select>
                                             @error('akses')
                                                 <p class='text-danger inputerror'>{{ $message }}</p>
