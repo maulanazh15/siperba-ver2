@@ -151,7 +151,7 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Laporan Barang</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == '' ? ' active bg-gradient-primary' : '' }} "
+                <a class="nav-link text-white {{ $activePage == 'laporan-barang-masuk' ? ' active bg-gradient-primary' : '' }} "
                     href="{{ route('laporan-barang-masuk.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">post_add</i>
@@ -160,7 +160,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == '' ? ' active bg-gradient-primary' : '' }} "
+                <a class="nav-link text-white {{ $activePage == 'laporan-barang-keluar' ? ' active bg-gradient-primary' : '' }} "
                     href="{{ route('laporan-barang-keluar.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">post_add</i>
@@ -223,17 +223,4 @@
             </li> --}}
         </ul>
     </div>
-    {{-- <div class="sidenav-footer position-absolute w-100 bottom-0">
-        <div class="mx-3">
-            <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-laravel" target="_blank">Free Download</a>
-        </div>
-        <div class="mx-3">
-            <a class="btn bg-gradient-primary w-100" href="../../documentation/getting-started/installation.html" target="_blank">View documentation</a>
-        </div>
-        <div class="mx-3">
-            <a class="btn bg-gradient-primary w-100"
-                href="https://www.creative-tim.com/product/material-dashboard-pro-laravel" target="_blank" type="button">Upgrade
-                to pro</a>
-        </div>
-    </div> --}}
 </aside>

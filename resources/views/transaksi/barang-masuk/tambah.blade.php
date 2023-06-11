@@ -2,7 +2,7 @@
     <x-navbars.sidebar activePage="barang-masuk"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Barang Masuk" page="Transaksi Barang"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Barang Masuk" page="Transaksi Barang Masuk"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row justify-content-center align-items-center">

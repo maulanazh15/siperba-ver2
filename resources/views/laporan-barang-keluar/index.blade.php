@@ -1,8 +1,8 @@
-</html <x-layout bodyClass="g-sidenav-show bg-gray-200">
-<x-navbars.sidebar activePage="barang"></x-navbars.sidebar>
+<x-layout bodyClass="g-sidenav-show bg-gray-200">
+<x-navbars.sidebar activePage="laporan-barang-keluar"></x-navbars.sidebar>
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <!-- Navbar -->
-    <x-navbars.navs.auth titlePage="Data Barang" page="Data Master"></x-navbars.navs.auth>
+    <x-navbars.navs.auth titlePage="Laporan Barang Keluar" page="Laporan Barang"></x-navbars.navs.auth>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row justify-content-center align-items-center">
@@ -45,9 +45,6 @@
                                             JUMLAH</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             TANGGAL KELUAR</th>
-                                        <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            LOKASI BARANG</th>
-                                        <th class="text-secondary opacity-7"></th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,28 +68,8 @@
                                             <p class="text-xs text-secondary mb-0">{{ $barang->jumlah_keluar }}</p>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <p class="text-xs text-secondary mb-0">{{$barang->tanggal_keluar}}</p>
+                                            <p class="text-xs text-secondary mb-0">{{$barang->created_at }}</p>
                                         </td>
-                                        <!-- <td class="align-middle text-center text-sm">
-                                            <p class="text-xs text-secondary mb-0">{{ $item->lokasiBarang->nama_lokasi }}</p>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a rel="tooltip" class="badge bg-gradient-success" href="{{ route('barang.edit', $item->id) }}">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                            <a href="{{ route('barang.destroy', $item->id) }}" class="badge bg-gradient-danger" onclick="event.preventDefault();
-                                                                 if (confirm('Apakah Anda yakin ingin menghapus barang ini?')) {
-                                                                     document.getElementById('delete-form').submit();
-                                                                 }">
-                                                <i class="material-icons">delete</i>
-                                            </a>
-
-                                            <form id="delete-form" method="POST" action="{{ route('barang.destroy', $item->id) }}" style="display: none;">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                        </td> -->
                                     </tr>
                                     @endforeach
                                 </tbody>
