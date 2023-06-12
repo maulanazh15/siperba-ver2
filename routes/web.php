@@ -21,16 +21,19 @@ use App\Http\Controllers\POController;
 use App\Http\Controllers\KlienController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\LokasiBarangController;
 use App\Http\Controllers\KelompokBarangController;
-use App\Http\Controllers\ProjectController;
-// use App\Http\Controllers\TransaksiMasukController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\LaporanStokBarangController;
+use App\Http\Controllers\LaporanBarangMasukController;
+use App\Http\Controllers\LaporanBarangKeluarController;
 
 
 Route::get('/', function () {
@@ -78,20 +81,42 @@ Route::group(['middleware' => 'auth'], function () {
 	// Route::get('user-management', function () {
 	// 	return view('pages.laravel-examples.user-management');
 	// })->name('user-management');
-	Route::resource('user-management', UserManagementController::class);
-	Route::resource('kelompok-barang', KelompokBarangController::class);
-	Route::resource('lokasi-barang', LokasiBarangController::class);
-	Route::resource('barang', BarangController::class);
-	Route::resource('supplier', SupplierController::class);
-	Route::resource('klien', KlienController::class);
-	Route::get('/ambilDataPO/{kode_po}', [POController::class, 'ambilDataPO']);
-	Route::get('tambah-po-barang', [POController::class, 'tambahPO'])->name('po.tambah');
-	Route::post('proses-po', [POController::class, 'prosesPO'])->name('po.simpan');
-	Route::get('po-barang', [POController::class, 'indexPO'])->name('po.index');
-	Route::get('barang-masuk', [BarangMasukController::class, 'indexBarangMasuk'])->name('barang-masuk.index');
-	Route::get('tambah-barang-masuk', [BarangMasukController::class, 'tambahBarangMasuk'])->name('barang-masuk.tambah');
-	Route::post('proses-barang-masuk', [BarangMasukController::class, 'prosesBarangMasuk'])->name('barang-masuk.simpan');
-	Route::resource('project', ProjectController::class);
+	Route::group(['middleware' => ['role:pemilik|manajer']], function () {
+		// Routes accessible by 'pemilik' role
+		Route::resource('user-management', UserManagementController::class);
+		Route::get('/laporan-barang-masuk', [LaporanBarangMasukController::class, 'index'])->name('laporan-barang-masuk.index');
+		Route::get('/laporan-barang-masuk/export-pdf', [LaporanBarangMasukController::class, 'exportPDF'])->name('laporan-barang-masuk.export');
+		Route::get('/laporan-barang-keluar', [LaporanBarangKeluarController::class, 'index'])->name('laporan-barang-keluar.index');
+		Route::get('/laporan-barang-keluar/export-pdf', [LaporanBarangKeluarController::class, 'exportPDF'])->name('laporan-barang-keluar.export');
+		Route::get('/laporan-stok-barang', [LaporanStokBarangController::class, 'index'])->name('laporan-stok-barang.index');
+		Route::get('/laporan-stok-barang/export-pdf', [LaporanStokBarangController::class, 'exportPDF'])->name('laporan-stok-barang.export');
+	});
+	
+	Route::group(['middleware' => ['role:manajer']], function () {
+		// Routes accessible by 'pemilik' and 'manajer' roles
+		Route::get('/ambilDataPO/{kode_po}', [POController::class, 'ambilDataPO']);
+		Route::get('tambah-po-barang', [POController::class, 'tambahPO'])->name('po.tambah');
+		Route::post('proses-po', [POController::class, 'prosesPO'])->name('po.simpan');
+		Route::get('po-barang', [POController::class, 'indexPO'])->name('po.index');
+		Route::get('barang-masuk', [BarangMasukController::class, 'indexBarangMasuk'])->name('barang-masuk.index');
+		Route::get('barang-masuk/tambah', [BarangMasukController::class, 'tambahBarangMasuk'])->name('barang-masuk.tambah');
+		Route::post('barang-masuk/proses', [BarangMasukController::class, 'prosesBarangMasuk'])->name('barang-masuk.simpan');
+		Route::resource('project', ProjectController::class);
+		Route::get('barang-keluar', [BarangKeluarController::class, 'index'])->name('barang-keluar.index');
+		Route::get('barang-keluar/tambah', [BarangKeluarController::class, 'create'])->name('barang-keluar.tambah');
+		Route::post('barang-keluar/proses', [BarangKeluarController::class, 'store'])->name('barang-keluar.simpan');
+		Route::get('/ambilDataProject/{project_id}', [ProjectController::class, 'ambilDataProject']);
+	
+	});
+	
+	Route::group(['middleware' => ['role:staff|manajer']], function () {
+		// Routes accessible by 'staff' role
+		Route::resource('kelompok-barang', KelompokBarangController::class);
+		Route::resource('lokasi-barang', LokasiBarangController::class);
+		Route::resource('barang', BarangController::class);
+		Route::resource('supplier', SupplierController::class);
+		Route::resource('klien', KlienController::class);
+	});
 
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');

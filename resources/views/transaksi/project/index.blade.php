@@ -3,7 +3,7 @@
     <x-navbars.sidebar activePage="project"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Data Project" page="Data Master"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Data Project" page="Transaksi Barang Keluar"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row justify-content-center align-items-center">
@@ -53,8 +53,8 @@
                                                 JUMLAH PESANAN</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 STATUS</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                DETAIL</th>
+                                            {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                DETAIL</th> --}}
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
                                     </thead>
@@ -88,11 +88,17 @@
                                                     <p class="text-xs text-secondary mb-0">{{ $project->jumlah_pesanan }}</p>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs text-secondary mb-0">{{ $project->status }}</p>
+                                                    @if ($project->status == 'Pending')
+                                                    <span class="badge bg-gradient-primary">{{ $project->status }}</span>
+                                                    @elseif($project->status == 'Selesai')
+                                                    <span class="badge bg-gradient-success">{{ $project->status }}</span>  
+                                                    @else
+                                                    <span class="badge bg-gradient-info">{{ $project->status }}</span>  
+                                                    @endif  
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
+                                                {{-- <td class="align-middle text-center text-sm">
                                                     <p class="text-xs text-secondary mb-0">{{ $project->detail }}</p>
-                                                </td>
+                                                </td> --}}
                                                 <td class="align-middle">
                                                     <a rel="tooltip" class="badge bg-gradient-success"
                                                         href="{{ route('project.edit', $project->id) }}">

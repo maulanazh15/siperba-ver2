@@ -5,93 +5,110 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Spatie\Permission\Models\Permission;
 
 class UserManagementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        // Apply middleware to the controller actions
+        $this->middleware('permission:view user management')->only('index');
+        $this->middleware('permission:create user management')->only('create', 'store');
+        $this->middleware('permission:edit user management')->only('edit', 'update');
+        $this->middleware('permission:delete user management')->only('destroy');
+    }
+
     public function index()
     {
-        $users = User::All();
+        // Only allow access if user has permission
+        $this->authorize('view user management');
+
+        $users = User::all();
         return view('user-management.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
+        // Only allow access if user has permission
+        $this->authorize('create user management');
+
         return view('user-management.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        // Only allow access if user has permission
+        $this->authorize('create user management');
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:Pemilik,Manajer,Staff'
+            'akses' => 'required'
         ]);
 
         $user = User::create($validatedData);
+        
+        if ($request->akses == 'pemilik') {
+            $user->assignRole('pemilik');
+        } elseif ($request->akses == 'manajer') {
+            $user->assignRole('manajer');
+        } else {
+            $user->assignRole('staff');
+        }
 
-        return redirect()->route('user-management.index');
+        return redirect()->route('user-management.index')->with('success', 'User created successfully.');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
+        // Only allow access if user has permission
+        $this->authorize('edit user management');
+
         $user = User::find($id);
         return view('user-management.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        $user = User::findOrFail($id);
+        // Only allow access if user has permission
+        $this->authorize('edit user management');
 
+        $user = User::findOrFail($id);
+        
         $validatedData = $request->validate([
             'email' => 'required|email',
             'name' => 'required',
-            'role' => 'required',
+            'akses' => 'required',
             'password' => 'nullable|confirmed|min:6',
         ]);
 
         $user->email = $validatedData['email'];
         $user->name = $validatedData['name'];
-        $user->role = $validatedData['role'];
+        $user->akses = $validatedData['akses'];
+
+        if ($request->akses == 'pemilik') {
+            $user->assignRole('pemilik');
+        } elseif ($request->akses == 'manajer') {
+            $user->assignRole('manajer');
+        } else {
+            $user->assignRole('staff');
+        }
 
         if ($request->filled('password')) {
             $user->password = bcrypt($validatedData['password']);
         }
 
-        $user->update();
+        $user->save();
 
         return redirect()->route('user-management.index')->with('success', 'User updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
+        // Only allow access if user has permission
+        $this->authorize('delete user management');
+
         $user = User::find($id);
 
         if ($user) {

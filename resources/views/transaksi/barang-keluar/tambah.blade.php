@@ -1,8 +1,8 @@
 <x-layout bodyClass="g-sidenav-show bg-gray-200">
-    <x-navbars.sidebar activePage="barang-masuk"></x-navbars.sidebar>
+    <x-navbars.sidebar activePage="barang-keluar"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Barang Masuk" page="Transaksi Barang Masuk"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Barang Keluar" page="Transaksi Barang Keluar"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row justify-content-center align-items-center">
@@ -11,37 +11,36 @@
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white mx-3">
-                                    Tambah Barang Masuk
+                                    Tambah Barang Keluar
                                 </h6>
                             </div>
                         </div>
                         <div class="card-body px-0 pb-">
                             <div class="px-5 py-0">
-                                <form method="POST" action="{{ route('barang-masuk.simpan') }}">
+                                <form method="POST" action="{{ route('barang-keluar.simpan') }}">
                                     @csrf
                                     <div class="row">
                                         <div class="mb-3 col-md-12">
-                                            <label class="form-label">Tanggal Masuk</label>
-                                            <input type="date" name="tanggal_masuk"
+                                            <label class="form-label">Tanggal Keluar</label>
+                                            <input type="date" name="tanggal_keluar"
                                                 class="form-control border border-2 p-2"
-                                                value="{{ old('tanggal_masuk') }}">
-                                            @error('tanggal_masuk')
+                                                value="{{ old('tanggal_keluar') }}">
+                                            @error('tanggal_keluar')
                                                 <p class="text-danger inputerror">{{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div class="mb-3 col-md-12">
-                                            <label class="form-label">Kode PO</label>
-                                            <select class="form-control border border-2 p-2 pilihpo" name="kode_po"
-                                                onchange="fillData(this.value)">
-                                                <option value="" disabled selected>Pilih Kode PO</option>
-                                                @foreach ($po as $item)
-                                                    <option value="{{ $item->kode_po }}"
-                                                        {{ old('kode_po') == $item->kode_po ? 'selected' : '' }}>
-                                                        {{ $item->kode_po }} | {{ $item->barang->nama_barang }}
-                                                    </option>
+                                            <label class="form-label">Project</label>
+                                            <select class="form-control border border-2 p-2 pilihProject"
+                                                name="project_id" onchange="fillData(this.value)">
+                                                <option value="" disabled selected>Pilih Project</option>
+                                                @foreach ($projects as $project)
+                                                    <option value="{{ $project->id }}"
+                                                        {{ old('project_id') == $project->id ? 'selected' : '' }}>
+                                                        {{ $project->nama_project }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('kode_po')
+                                            @error('project_id')
                                                 <p class="text-danger inputerror">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -59,11 +58,11 @@
                                                 value="{{ old('stok_barang') }}" readonly>
                                         </div>
                                         <div class="mb-3 col-md-12">
-                                            <label class="form-label">Jumlah Masuk</label>
-                                            <input type="number" name="jumlah_masuk" id="jumlah_masuk"
+                                            <label class="form-label">Jumlah Keluar</label>
+                                            <input type="number" name="jumlah_keluar" id="jumlah_keluar"
                                                 class="form-control border border-2 p-2"
-                                                value="{{ old('jumlah_masuk') }}" readonly>
-                                            @error('jumlah_masuk')
+                                                value="{{ old('jumlah_keluar') }}" readonly>
+                                            @error('jumlah_keluar')
                                                 <p class="text-danger inputerror">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -78,7 +77,7 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <button type="submit" class="btn bg-gradient-dark">Submit</button>
-                                            <a href="{{ route('barang-masuk.index') }}"
+                                            <a href="{{ route('barang-keluar.index') }}"
                                                 class="btn bg-gradient-info">Kembali</a>
                                         </div>
                                     </div>
@@ -95,11 +94,11 @@
 </x-layout>
 
 <script>
-    function fillData(poId) {
-        // Retrieve data based on selected PO ID
-        fetchData(poId);
+    function fillData(barangId) {
+        // Retrieve data based on selected barang ID
+        fetchData(barangId);
 
-        function fetchData(poId) {
+        function fetchData(barangId) {
             var serverName = window.location.hostname;
             var protocol = window.location.protocol;
             var port = window.location.port;
@@ -108,12 +107,12 @@
             if (port) {
                 baseUrl += ":" + port;
             }
-            fetch(baseUrl + '/ambilDataPO/' + poId)
+            fetch(baseUrl + '/ambilDataProject/' + barangId)
                 .then(response => response.json())
                 .then(data => {
                     // Fill the form fields with the retrieved data
                     document.getElementById('nama_barang').value = data.nama_barang;
-                    document.getElementById('jumlah_masuk').value = data.jumlah_masuk;
+                    document.getElementById('jumlah_keluar').value = data.jumlah_keluar;
                     document.getElementById('stok_barang').value = data.stok_barang;
                     document.getElementById('barang_id').value = data.barang_id;
 
@@ -127,13 +126,13 @@
 
         function calculateTotalStock() {
             var stok_barang = parseInt(document.getElementById('stok_barang').value);
-            var jumlah_masuk = parseInt(document.getElementById('jumlah_masuk').value);
-            var total_stok = isNaN(stok_barang) ? jumlah_masuk : stok_barang + jumlah_masuk;
+            var jumlah_keluar = parseInt(document.getElementById('jumlah_keluar').value);
+            var total_stok = isNaN(stok_barang) ? jumlah_keluar : stok_barang - jumlah_keluar;
 
             document.getElementById('total_stok').value = total_stok;
         }
     }
     $(document).ready(function() {
-        $('.pilihpo').select2();
+        $('.pilihProject').select2();
     });
 </script>

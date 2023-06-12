@@ -9,11 +9,21 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        // Apply middleware to the controller actions
+        $this->middleware('permission:view projects')->only('index', 'show');
+        $this->middleware('permission:create projects')->only('create', 'store');
+        $this->middleware('permission:edit projects')->only('edit', 'update');
+        $this->middleware('permission:delete projects')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->authorize('view projects');
         $projects =  Project::all();
         return view('transaksi.project.index', compact('projects'));
     }
@@ -23,6 +33,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $this->authorize('create projects');
         $klienList = Klien::all();
         $barangList = Barang::where('stok', '>', 0)->get();
 
@@ -33,6 +44,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create projects');
         // Validasi data yang diterima dari request
         $validatedData = $request->validate([
             'nama_project' => 'required',
@@ -81,6 +93,8 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
+
+        $this->authorize('edit projects');
         $project = Project::findOrFail($id);
         $klienList = Klien::all();
         $barangList = Barang::where('stok', '>', 0)->get();
@@ -93,12 +107,14 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // Only allow access if user has permission
+        $this->authorize('edit projects');
         // Validasi data yang diterima dari request
         $validatedData = $request->validate([
             'nama_project' => 'required',
             'tanggal_pesan' => 'required',
             'barang_id' => 'required',
-            'nama_klien' => 'required',
+            'klien_id' => 'required',
             'harga_jual' => 'required',
             'jumlah_pesanan' => 'required',
             'status' => 'required',
@@ -133,6 +149,8 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
+        // Only allow access if user has permission
+        $this->authorize('delete projects');
         // Temukan project berdasarkan ID
         $project = Project::findOrFail($id);
 
@@ -144,5 +162,21 @@ class ProjectController extends Controller
 
         // Contoh pengalihan ke halaman index proyek setelah dihapus
         return redirect()->route('project.index')->with('success', 'Proyek berhasil dihapus');
+    }
+
+    public function ambilDataProject($project_id)
+    {
+        // Only allow access if user has permission
+        $this->authorize('edit projects');
+        $project = Project::where('id', $project_id)->first();
+
+        $data = [
+            'barang_id' => $project->barang_id,
+            'nama_barang' => $project->barang->nama_barang,
+            'stok_barang' => $project->barang->stok,
+            'jumlah_keluar' => $project->jumlah_pesanan,
+        ];
+        // dd($data);
+        return response()->json($data);
     }
 }

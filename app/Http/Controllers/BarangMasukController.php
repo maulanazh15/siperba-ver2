@@ -11,8 +11,17 @@ use Illuminate\Http\Request;
 class BarangMasukController extends Controller
 {
     
+    public function __construct()
+    {
+        // Apply middleware to the controller actions
+        $this->middleware('permission:view barang-masuk')->only('indexBarangMasuk');
+        $this->middleware('permission:create barang-masuk')->only('tambahBarangMasuk', 'prosesBarangMasuk');
+    }
 
     public function indexBarangMasuk() { 
+        // Only allow access if user has permission
+        $this->authorize('view barang-masuk');
+
         $barangMasuk = BarangMasuk::all();
 
         return view('transaksi.barang-masuk.index', compact('barangMasuk'));
@@ -20,6 +29,8 @@ class BarangMasukController extends Controller
     }
 
     public function tambahBarangMasuk() {
+        // Only allow access if user has permission
+        $this->authorize('create barang-masuk');
         $po = PO::where('status', 'Dipesan')->get();
         
         return view('transaksi.barang-masuk.tambah', compact('po'));
@@ -27,6 +38,8 @@ class BarangMasukController extends Controller
 
     public function prosesBarangMasuk(Request $request)
     {
+        // Only allow access if user has permission
+        $this->authorize('create barang-masuk');
         // Validasi data masukan
         $request->validate([
             'tanggal_masuk' => 'required|date',

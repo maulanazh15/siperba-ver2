@@ -94,7 +94,7 @@
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $user->role }}</span>
+                                                        class="text-secondary text-xs font-weight-bold text-uppercase">{{ $user->akses }}</span>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span
