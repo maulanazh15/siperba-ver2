@@ -30,7 +30,7 @@
                         </div>
                         <div class="me-3 my-3 text-end">
                             <a class="btn bg-gradient-dark mb-0" href="{{ route('laporan-stok-barang.export') }}"><i
-                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Cetak PDF</a>
+                                    class="material-icons text-sm">picture_as_pdf</i>&nbsp;&nbsp;Cetak PDF</a>
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive px-5 pb-3">

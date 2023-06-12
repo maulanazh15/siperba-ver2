@@ -44,10 +44,11 @@ class UserManagementController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string',
             'password' => 'required|string|min:8|confirmed',
-            'akses' => 'required|in:Pemilik,Manajer,Staff'
+            'akses' => 'required'
         ]);
 
         $user = User::create($validatedData);
+        
         if ($request->akses == 'pemilik') {
             $user->assignRole('pemilik');
         } elseif ($request->akses == 'manajer') {

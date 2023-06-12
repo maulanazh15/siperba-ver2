@@ -27,6 +27,7 @@ class User extends Authenticatable
         // 'phone',
         // 'about',
         'password_confirmation',
+        'akses'
         // 'role'
     ];
 
