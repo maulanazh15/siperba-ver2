@@ -88,7 +88,13 @@
                                                     <p class="text-xs text-secondary mb-0">{{ $project->jumlah_pesanan }}</p>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs text-secondary mb-0">{{ $project->status }}</p>
+                                                    @if ($project->status == 'Pending')
+                                                    <span class="badge bg-gradient-primary">{{ $project->status }}</span>
+                                                    @elseif($project->status == 'Selesai')
+                                                    <span class="badge bg-gradient-success">{{ $project->status }}</span>  
+                                                    @else
+                                                    <span class="badge bg-gradient-info">{{ $project->status }}</span>  
+                                                    @endif  
                                                 </td>
                                                 {{-- <td class="align-middle text-center text-sm">
                                                     <p class="text-xs text-secondary mb-0">{{ $project->detail }}</p>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laporan Stok Masuk</title>
+    <title>Laporan Stok Barang</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-4 mb-4">Laporan Stok Masuk</h1>
+        <h1 class="mt-4 mb-4">Laporan Stok Barang</h1>
 
         <table class="table">
             <thead>
