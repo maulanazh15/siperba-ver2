@@ -175,6 +175,7 @@ class ProjectController extends Controller
             'nama_barang' => $project->barang->nama_barang,
             'stok_barang' => $project->barang->stok,
             'jumlah_keluar' => $project->jumlah_pesanan,
+            'tanggal_pesan' => $project->tanggal_pesan,
         ];
         // dd($data);
         return response()->json($data);

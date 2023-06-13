@@ -21,15 +21,6 @@
                                     @csrf
                                     <div class="row">
                                         <div class="mb-3 col-md-12">
-                                            <label class="form-label">Tanggal Keluar</label>
-                                            <input type="date" name="tanggal_keluar"
-                                                class="form-control border border-2 p-2"
-                                                value="{{ old('tanggal_keluar') }}">
-                                            @error('tanggal_keluar')
-                                                <p class="text-danger inputerror">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                        <div class="mb-3 col-md-12">
                                             <label class="form-label">Project</label>
                                             <select class="form-control border border-2 p-2 pilihProject"
                                                 name="project_id" onchange="fillData(this.value)">
@@ -41,6 +32,15 @@
                                                 @endforeach
                                             </select>
                                             @error('project_id')
+                                                <p class="text-danger inputerror">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3 col-md-12">
+                                            <label class="form-label">Tanggal Keluar</label>
+                                            <input type="date" name="tanggal_keluar"
+                                                class="form-control border border-2 p-2"
+                                                value="{{ old('tanggal_keluar') }}" id="tanggal_keluar">
+                                            @error('tanggal_keluar')
                                                 <p class="text-danger inputerror">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -115,6 +115,7 @@
                     document.getElementById('jumlah_keluar').value = data.jumlah_keluar;
                     document.getElementById('stok_barang').value = data.stok_barang;
                     document.getElementById('barang_id').value = data.barang_id;
+                    document.getElementById('tanggal_keluar').min = data.tanggal_pesan.split(' ')[0];
 
                     // Calculate total stock
                     calculateTotalStock();

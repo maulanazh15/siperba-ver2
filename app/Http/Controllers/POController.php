@@ -77,6 +77,7 @@ class POController extends Controller
             'nama_barang' => $po->barang->nama_barang,
             'stok_barang' => $po->barang->stok,
             'jumlah_masuk' => $po->jumlah_barang,
+            'tanggal'=> $po->tanggal,
         ];
         return response()->json($data);
     }
