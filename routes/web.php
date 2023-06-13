@@ -57,32 +57,8 @@ Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('aut
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('billing', function () {
-		return view('pages.billing');
-	})->name('billing');
-	Route::get('tables', function () {
-		return view('pages.tables');
-	})->name('tables');
-	Route::get('rtl', function () {
-		return view('pages.rtl');
-	})->name('rtl');
-	Route::get('virtual-reality', function () {
-		return view('pages.virtual-reality');
-	})->name('virtual-reality');
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
-	Route::get('static-sign-in', function () {
-		return view('pages.static-sign-in');
-	})->name('static-sign-in');
-	Route::get('static-sign-up', function () {
-		return view('pages.static-sign-up');
-	})->name('static-sign-up');
-	// Route::get('user-management', function () {
-	// 	return view('pages.laravel-examples.user-management');
-	// })->name('user-management');
 	Route::group(['middleware' => ['role:pemilik|manajer']], function () {
-		// Routes accessible by 'pemilik' role
+		// Routes accessible by 'pemilik' role and 'manajer' role
 		Route::resource('user-management', UserManagementController::class);
 		Route::get('/laporan-barang-masuk', [LaporanBarangMasukController::class, 'index'])->name('laporan-barang-masuk.index');
 		Route::get('/laporan-barang-masuk/export-pdf', [LaporanBarangMasukController::class, 'exportPDF'])->name('laporan-barang-masuk.export');
@@ -93,7 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 	
 	Route::group(['middleware' => ['role:manajer']], function () {
-		// Routes accessible by 'pemilik' and 'manajer' roles
+		// Routes accessible by  'manajer' roles
 		Route::get('/ambilDataPO/{kode_po}', [POController::class, 'ambilDataPO']);
 		Route::get('tambah-po-barang', [POController::class, 'tambahPO'])->name('po.tambah');
 		Route::post('proses-po', [POController::class, 'prosesPO'])->name('po.simpan');
@@ -110,15 +86,11 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 	
 	Route::group(['middleware' => ['role:staff|manajer']], function () {
-		// Routes accessible by 'staff' role
+		// Routes accessible by 'staff' role and 'manajer' role
 		Route::resource('kelompok-barang', KelompokBarangController::class);
 		Route::resource('lokasi-barang', LokasiBarangController::class);
 		Route::resource('barang', BarangController::class);
 		Route::resource('supplier', SupplierController::class);
 		Route::resource('klien', KlienController::class);
 	});
-
-	Route::get('user-profile', function () {
-		return view('pages.laravel-examples.user-profile');
-	})->name('user-profile');
 });
