@@ -58,7 +58,7 @@ Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')-
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
 	Route::group(['middleware' => ['role:pemilik|manajer']], function () {
-		// Routes accessible by 'pemilik' role
+		// Dapat diakses oleh user dengan role pemilik atau manajer
 		Route::resource('user-management', UserManagementController::class);
 		Route::get('/laporan-barang-masuk', [LaporanBarangMasukController::class, 'index'])->name('laporan-barang-masuk.index');
 		Route::get('/laporan-barang-masuk/export-pdf', [LaporanBarangMasukController::class, 'exportPDF'])->name('laporan-barang-masuk.export');
@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 	
 	Route::group(['middleware' => ['role:manajer']], function () {
-		// Routes accessible by 'pemilik' and 'manajer' roles
+		// Dapat diakses oleh user dengan role manajer
 		Route::get('/ambilDataPO/{kode_po}', [POController::class, 'ambilDataPO']);
 		Route::get('tambah-po-barang', [POController::class, 'tambahPO'])->name('po.tambah');
 		Route::post('proses-po', [POController::class, 'prosesPO'])->name('po.simpan');
@@ -86,7 +86,7 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 	
 	Route::group(['middleware' => ['role:staff|manajer']], function () {
-		// Routes accessible by 'staff' role
+		// Dapat diakses oleh user dengan role staff atau manajer
 		Route::resource('kelompok-barang', KelompokBarangController::class);
 		Route::resource('lokasi-barang', LokasiBarangController::class);
 		Route::resource('barang', BarangController::class);
