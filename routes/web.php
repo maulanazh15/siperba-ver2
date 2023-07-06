@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 use App\Http\Controllers\POController;
 use App\Http\Controllers\KlienController;
 use App\Http\Controllers\BarangController;
@@ -39,6 +35,7 @@ use App\Http\Controllers\LaporanBarangKeluarController;
 Route::get('/', function () {
 	return redirect('sign-in');
 })->middleware('guest');
+Route::get('/cekData', [DashboardController::class, 'cekData'])->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
@@ -57,6 +54,7 @@ Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('aut
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
+	
 	Route::group(['middleware' => ['role:pemilik|manajer']], function () {
 		// Dapat diakses oleh user dengan role pemilik atau manajer
 		Route::resource('user-management', UserManagementController::class);
